@@ -29,7 +29,7 @@ jobs:
         TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
     - name: Run bash file
       run: |
-        cd ${{ secrets.TEST_REMOTE_TARGET }}
+        cd /home/ubuntu/test_code
         echo "A initial message"
         bash run.sh 
     # - name: Set up Python ${{ matrix.python-version }}
