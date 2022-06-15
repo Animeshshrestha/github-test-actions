@@ -21,17 +21,17 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Deploy to Server 1
-      uses: appleboy/ssh-action@master
+      uses: easingthemes/ssh-deploy@main
       env:
-        key: ${{ secrets.TEST_EC2_SSH_KEY }}
-        host: ${{ secrets.TEST_REMOTE_HOST }}
-        username: ${{ secrets.TEST_REMOTE_USER }}
-        script: whoami
+        SSH_PRIVATE_KEY: ${{ secrets.TEST_EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.TEST_REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.TEST_REMOTE_USER }}
+        TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
     - name: Run bash file
       run: |
-        cd /home/ubuntu/test_code
+        cd ${{ secrets.TEST_REMOTE_TARGET }}
         echo "A initial message"
-        bash run.sh 
+        bash run.sh  
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
     # - name: Install Dependencies
