@@ -16,20 +16,28 @@ jobs:
         python-version: [3.8]
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Checkout the files
+      uses: actions/checkout@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run bash script file
-      run: |
-        chmod +x ./hello.sh
-      shell: bash
-    - name: Run Pre-Commit Tasks
-      run: |
-        pre-commit run --all-files
+    - name: Deploy to Server 1
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.TEST_EC2_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.TEST_REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.TEST_REMOTE_USER }}
+        TARGET: ${{ secrets.TEST_REMOTE_TARGET }} 
+    # - name: Set up Python ${{ matrix.python-version }}
+    #   uses: actions/setup-python@v3
+    # - name: Install Dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     pip install -r requirements.txt
+    # - name: Run bash script file
+    #   run: |
+    #     chmod +x ./hello.sh
+    #   shell: bash
+    # - name: Run Pre-Commit Tasks
+    #   run: |
+    #     pre-commit run --all-files
       
