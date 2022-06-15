@@ -29,11 +29,7 @@ jobs:
         TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
     - name: Run bash file
       run: |
-        ls -la
-        cd ${{ secrets.TEST_REMOTE_TARGET }}
-        echo "A initial message"
-        ls -la
-        bash run.sh 
+        bash hello.sh 
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
     # - name: Install Dependencies
