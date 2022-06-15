@@ -26,7 +26,10 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.TEST_EC2_SSH_KEY }}
         REMOTE_HOST: ${{ secrets.TEST_REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.TEST_REMOTE_USER }}
-        TARGET: ${{ secrets.TEST_REMOTE_TARGET }} 
+        TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
+    - name: Run bash file
+      run: |
+        cd {{ secrets.TEST_REMOTE_TARGET }} && bash run.sh 
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
     # - name: Install Dependencies
