@@ -32,8 +32,8 @@ jobs:
         cd .. && 
         cd ${{ secrets.TEST_REMOTE_TARGET }} &&
         echo "A initial message" &&
-        chmod +x hello.sh
-        bash hello.sh  
+        chmod +x ./hello.sh
+      shell: bash  
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
     # - name: Install Dependencies
