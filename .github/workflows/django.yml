@@ -21,12 +21,12 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Deploy to Server 1
-      uses: easingthemes/ssh-deploy@main
+      uses: appleboy/ssh-action@master
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.TEST_EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.TEST_REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.TEST_REMOTE_USER }}
-        TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
+        key: ${{ secrets.TEST_EC2_SSH_KEY }}
+        host: ${{ secrets.TEST_REMOTE_HOST }}
+        username: ${{ secrets.TEST_REMOTE_USER }}
+        script: whoami
     - name: Run bash file
       run: |
         cd /home/ubuntu/test_code
