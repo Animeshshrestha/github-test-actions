@@ -29,7 +29,7 @@ jobs:
         TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
     - name: Run bash file
       run: |
-        chmod +x ./hello.sh
+        chmod +x hello.sh
       shell: bash
        
     # - name: Set up Python ${{ matrix.python-version }}
