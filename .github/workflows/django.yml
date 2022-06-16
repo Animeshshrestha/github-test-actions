@@ -30,7 +30,7 @@ jobs:
     - name: Run bash file
       run: |
         ls -la
-        chmod +x bash.sh
+        chmod +x hello.sh
         bash hello.sh 
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
