@@ -27,11 +27,20 @@ jobs:
         REMOTE_HOST: ${{ secrets.TEST_REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.TEST_REMOTE_USER }}
         TARGET: ${{ secrets.TEST_REMOTE_TARGET }}
-    - name: Run bash file
+    - name: Down the existing running Docker container
       run: |
-        ls -la
-        chmod +x hello.sh
-        bash hello.sh 
+        docker-compose -f production.yml down
+    - name: Build the Docker image
+      run: |
+        docker-compose -f production.yml build
+    - name: Run the Docker image
+      run: |
+        docker-compose -f production.yml up -d
+    # - name: Run bash file
+    #   run: |
+    #     ls -la
+    #     chmod +x hello.sh
+    #     bash hello.sh 
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
     # - name: Install Dependencies
