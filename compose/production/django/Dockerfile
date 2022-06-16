@@ -1,24 +1,15 @@
-FROM python:3.9-slim-buster
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-RUN apt-get update && apt-get install --no-install-recommends -y \
-  # magic dependency
-  libmagic1 \
-  # dependencies for building Python packages
-  build-essential \
-  # psycopg2 dependencies
-  libpq-dev
-RUN apt-get update && apt-get install --no-install-recommends -y \
-  # magic dependency
-  libmagic1 \
-  # psycopg2 dependencies
-  libpq-dev \
-  # Translations dependencies
-  gettext \
-  # cleaning up unused files
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  && rm -rf /var/lib/apt/lists/*
-WORKDIR /code
-COPY requirements.txt /code/
+FROM python:3.8-slim
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install --upgrade pip
+RUN apt update -y
+RUN apt install -y python3-pip python-dev build-essential
+
+
+WORKDIR /app
+
+COPY requirements.txt /app/
+
 RUN pip install -r requirements.txt
-COPY . /code/
+
+COPY . /app/
