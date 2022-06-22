@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-    image: 279319081060/web:latest
+    # image: 279319081060/web:latest
     command: >
       sh -c "
       gunicorn conceptu.wsgi:application --bind 0.0.0.0:8000
@@ -25,7 +25,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: 279319081060/db:latest
+    # image: 279319081060/db:latest
     volumes:
       - postgres_data:/var/lib/postgresql/data/
       # - ./compose/production/postgres/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
@@ -39,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
-    image: 279319081060/nginx:latest
+    # image: 279319081060/nginx:latest
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
