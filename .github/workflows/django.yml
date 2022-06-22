@@ -28,7 +28,7 @@ jobs:
         user : ${{ secrets.TEST_REMOTE_USER }}
         command: |
           ls -la
-          bash hello.sh
+          cd test_code/ && bash hello.sh
     # - name: Run bash file
       # run: |
       #   ls -la
