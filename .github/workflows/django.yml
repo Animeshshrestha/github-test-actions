@@ -31,6 +31,7 @@ jobs:
       run: |
         ls -la
         chmod +x hello.sh
+        hello.sh
       shell: bash
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
